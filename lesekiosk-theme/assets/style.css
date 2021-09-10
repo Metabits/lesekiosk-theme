@@ -1,0 +1,224 @@
+/*
+  Theme Name: Lesekiosk
+  Theme URI: http://lesekiosk.no
+  Description: Noe her
+  Version: 1.4.3
+
+  License: MIT
+    License URI: http://opensource.org/licenses/mit-license.php
+    
+    Modified by ciaran.co.za to include TailwindCSS
+*/
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  --admin-bar-height:  0px;
+  @apply font-light;
+}
+body.admin-bar {
+  --admin-bar-height:  46px;
+}
+@media screen(sm) {
+  body.admin-bar {
+    --admin-bar-height:  32px;
+  }
+}
+.content-wrapper {
+  @apply px-4 mx-auto max-w-screen-xl;
+}
+.logo {
+  @apply block;
+  width:  16rem;
+  max-width: 40vw;
+}
+/* main-container */
+.main-container {
+  @apply flex flex-col;
+  min-height: calc(100vh - var(--admin-bar-height));
+}
+/* main-nav */
+.mobile-toggle-btn {
+  @apply p-1 text-4xl;
+}
+.mobile-toggle-btn-close {
+  @apply absolute;
+  right:  1rem;
+  top: calc(1rem + 0px);
+}
+@media (max-width: theme('screens.md')) {
+  .main-nav {
+    @apply bg-primary text-white hidden w-screen bottom-0 fixed top-0 left-0 z-50 items-center justify-center;
+    top: calc(0px + var(--admin-bar-height));
+  }
+  .main-nav:target {
+    @apply flex;
+  }
+  .main-nav ul a {
+    @apply text-3xl pl-2 uppercase font-bold block py-1;
+  }
+  .main-nav ul a:hover,
+  .main-nav ul a:active {
+    @apply text-gray-900 underline;
+  }
+  .main-nav .current_page_item a {
+    @apply text-gray-900;
+  }
+}
+@screen md {
+  .main-nav ul {
+    @apply flex items-center;
+  }
+  .main-nav ul a {
+    @apply text-lg text-primary inline-block pl-2 uppercase font-bold;
+  }
+  .main-nav ul a:hover,
+  .main-nav ul a:active {
+    @apply text-gray-900 underline;
+  }
+  .main-nav .current_page_item a {
+    @apply text-gray-900;
+  }
+  .main-nav li:not(:last-child):after {
+    content: '/';
+    @apply inline-block pl-2 font-bold text-primary;
+  }
+}
+.svg-inline--fa {
+  height: 1em;
+  width: 1em;
+  margin: 0;
+}
+h1, .h1, h2, .h2, h3, .h3, h4, .h4 {
+  
+}
+h1, .h1, .page-title {
+  @apply text-4xl text-primary font-bold;
+}
+.page-title {
+  @apply mb-2;
+}
+h2, .h2 {
+  @apply text-xl font-bold;
+}
+h3, .h3 {
+  @apply text-xl font-light;
+}
+.content-column {
+  @apply mx-auto;
+  max-width: 56rem;
+}
+.wp-content h2 {
+  @apply font-light;
+}
+.wp-content h2,
+.wp-content h3,
+.wp-content h4 {
+  @apply mb-4;
+}
+.wp-content p,
+.wp-content ul,
+.wp-content ol,
+.wp-content img {
+  @apply mb-4;
+}
+.wp-content ul,
+.wp-content ol {
+  @apply ml-4;
+}
+.wp-content ul {
+  @apply list-disc;
+}
+.wp-content ol {
+  @apply list-decimal;
+}
+.wp-content > *:last-child {
+  @apply mb-0;
+}
+.wp-content a,
+.link-regular {
+  @apply text-primary underline hover:no-underline focus:no-underline;
+}
+.border-theme,
+.border-theme-no-padding {
+  @apply border-gray-300;
+}
+.padding-theme,
+.border-theme {
+  @apply p-3;
+  @media screen(md) {
+    @apply p-4;
+  }
+}
+.border-only {
+  @apply border-gray-300;
+}
+.link-simple {
+  @apply hover:underline focus:underline;
+}
+.link-simple-underline {
+  @apply underline hover:no-underline focus:no-underline;
+}
+/* Widgets */
+.widget_nav_menu a {
+  @apply text-primary font-bold block text-xl uppercase text-center hover:underline focus:underline;
+}
+.widget_block h2,
+.widget_block h3 {
+  @apply text-primary;
+}
+.image-viewer img {
+  @apply block mx-auto;
+  height: 400px;
+  object-fit:contain;
+  object-position: center center;
+}
+.image-viewer-item img {
+  @apply block;
+  height: 5rem;
+  width: auto;
+}
+.kiosk-item-grid {
+  @apply sm:grid grid-cols-2 md:grid-cols-3 border-only border border-t-0 overflow-hidden;
+}
+.kiosk-item-grid:not(:last-child) {
+  @apply border-b-0;
+}
+.kiosk-item {
+  @apply relative;
+}
+.kiosk-item:not(:last-child) {
+  @apply border-only border-b;
+}
+@media screen(sm) {
+  .kiosk-item:not(:last-child) {
+    @apply border-b-0;
+  }
+  .kiosk-item:not(:nth-child(2n)) {
+    @apply border-only border-r;
+  }
+  .kiosk-item:nth-child(2n):before {
+    content: inherit;
+  }
+  .kiosk-item:nth-child(3n):before {
+    content: "";
+    @apply absolute top-0 left-0 w-screen border-only border-t;
+  }
+}
+@media screen(md) {
+  .kiosk-item:not(:nth-child(2n)) {
+    @apply border-r-0;
+  }
+  .kiosk-item:not(:nth-child(3n)) {
+    @apply border-only border-r;
+  }
+  .kiosk-item:nth-child(3n):before {
+    content: inherit;
+  }
+  .kiosk-item:nth-child(4n):before {
+    content: "";
+    @apply absolute top-0 left-0 w-screen border-only border-t;
+  }
+}
