@@ -5,7 +5,7 @@
     <h1 class="mb-2"><?php the_title(); ?></h1>
     <div class="wp-content text-lg">
       <?php if ( has_post_thumbnail()) : ?>
-        <?php the_post_thumbnail('large', array('class' => 'w-full h-auto block mb-4')); ?>
+        <?php the_post_thumbnail('large_crop', array('class' => 'w-full h-auto block mb-4')); ?>
       <?php endif; ?>
       <?php the_content(); ?>
     </div>

@@ -43,15 +43,14 @@
           <?php the_post_thumbnail('large'); ?>
         </div>
         <?php if (get_field('gallery')): ?>
-          <nav class="flex items-center justify-center mb-2">
+          <nav class="flex flex-wrap items-center justify-center mb-2">
             <?php $img_id = get_post_thumbnail_id() ?>
-            <button class="border-2 border-white border-primary block mx-1 image-viewer-item" data-alt="<?php echo get_post_meta($img_id, '_wp_attachment_image_alt', TRUE) ?>" data-src="<?php echo wp_get_attachment_image_src($img_id, 'large') ?>">
+            <button class="border-2 border-white border-primary block mx-1 mb-1 image-viewer-item" data-alt="<?php echo get_post_meta($img_id, '_wp_attachment_image_alt', TRUE) ?>" data-src="<?php echo wp_get_attachment_image_src($img_id, 'large')[0] ?>" data-srcset="<?php echo wp_get_attachment_image_srcset($img_id, 'large') ?>">
               <?php the_post_thumbnail('small'); ?>
             </button>
-            <?php foreach(get_field('gallery') as $item): ?>
-              <?php $img = $item['image']; ?>
-              <button class="border-2 border-white block mx-1 image-viewer-item" data-alt="<?php echo $img['alt'] ?>" data-src="<?php echo $img['sizes']['large'] ?>">
-                <?php echo wp_get_attachment_image($img['id'], 'small'); ?>
+            <?php foreach(get_field('gallery') as $img): ?>
+              <button class="border-2 border-white block mx-1 mb-1 image-viewer-item" data-alt="<?php echo $img['alt'] ?>" data-src="<?php echo wp_get_attachment_image_src($img['ID'], 'large')[0] ?>" data-srcset="<?php echo wp_get_attachment_image_srcset($img['ID'], 'large') ?>">
+                <?php echo wp_get_attachment_image($img['ID'], 'small'); ?>
               </button>
               <?php endforeach; ?>
           </nav>

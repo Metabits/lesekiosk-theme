@@ -9,7 +9,7 @@
     $('.image-viewer-item').click(function(event) {
       event.preventDefault();
       const self = $(this)
-      $('.image-viewer img').attr('src', self.attr('data-src')).attr('alt', self.attr('data-alt'));
+      $('.image-viewer img').attr('src', self.attr('data-src')).attr('alt', self.attr('data-alt')).attr('srcset', self.attr('data-srcset'));
       $('.image-viewer-item').removeClass('border-primary').filter($(this)).addClass('border-primary');
     })
   });

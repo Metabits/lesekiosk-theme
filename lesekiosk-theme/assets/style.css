@@ -167,7 +167,9 @@ h3, .h3 {
 }
 .widget_block h2,
 .widget_block h3 {
-  @apply text-primary;
+}
+.widget_text {
+  @apply mb-3;
 }
 .image-viewer img {
   @apply block mx-auto;

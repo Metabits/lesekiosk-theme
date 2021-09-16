@@ -1,5 +1,9 @@
 <?php
 
+if (WP_ENV !== 'development') {
+  // require_once 'acf.php';
+}
+
 function my_acf_init() {
   acf_update_setting('google_api_key', get_theme_mod('mb_google_api_key'));
 }
@@ -50,10 +54,11 @@ if (function_exists('add_theme_support'))
 
     // Add Thumbnail Theme Support
     add_theme_support('post-thumbnails');
-    add_image_size('large', 900, 900, true); // Large Thumbnail
-    add_image_size('medium', 600, 300, true); // Medium Thumbnail
-    add_image_size('small', 120, 120); // Small Thumbnail
-    add_image_size('custom-size', 700, 200, true); // Custom Thumbnail Size call using the_post_thumbnail('custom-size');
+    add_image_size('large', 900, 900);
+    add_image_size('medium', 600, 300);
+    add_image_size('small', 120, 120);
+    add_image_size('medium_crop', 600, 300, true);
+    add_image_size('large_crop', 900, 900, true);
 
     // Add Support for Custom Backgrounds - Uncomment below if you're going to use
     /*add_theme_support('custom-background', array(

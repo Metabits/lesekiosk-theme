@@ -11,7 +11,7 @@
     <div class="border border-theme mb-4">
       <div class="content-column wp-content text-lg">
         <?php if ( has_post_thumbnail()) : ?>
-          <?php the_post_thumbnail('large', array('class' => 'w-full block mb-4')); ?>
+          <?php the_post_thumbnail('large_crop', array('class' => 'w-full block mb-4')); ?>
         <?php endif; ?>
         <?php the_content(); ?>
       </div>
