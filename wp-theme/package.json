@@ -9,12 +9,14 @@
   "author": "Ciaran",
   "license": "ISC",
   "devDependencies": {
-    "cross-env": "^7.0.2",
-    "laravel-mix": "^6.0.0-beta.17"
+    "browser-sync": "^2.27.5",
+    "browser-sync-webpack-plugin": "^2.3.0",
+    "cross-env": "^7.0.3",
+    "laravel-mix": "^6.0.31"
   },
   "dependencies": {
-    "autoprefixer": "^9.8.6",
-    "postcss": "^8.1",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.1"
+    "autoprefixer": "^10.3.6",
+    "postcss": "^8.3",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.16"
   }
 }

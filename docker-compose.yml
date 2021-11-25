@@ -25,7 +25,7 @@ services:
       WORDPRESS_DB_PASSWORD: wordpress
     working_dir: /var/www/html
     volumes:
-      - ./lesekiosk-theme:/var/www/html/wp-content/themes/lesekiosk-theme
+      - ./wp-theme:/var/www/html/wp-content/themes/wp-theme
       - ./wp-content:/var/www/html/wp-content
       - ./uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
 volumes:
