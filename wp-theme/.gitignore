@@ -1,3 +1,8 @@
 .DS_Store
 node_modules/
-
+js/scripts.js
+/style.css
+dist
+dist.zip
+version-hash.php
+mix-manifest.json
