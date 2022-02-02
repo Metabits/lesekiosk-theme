@@ -9,7 +9,7 @@
     </div>
     
     <div class="border border-theme mb-4">
-      <div class="content-column wp-content text-lg">
+      <div class="content-column wp-content text-lg mb-4">
         <?php if ( has_post_thumbnail()) : ?>
           <?php the_post_thumbnail('large_crop', array('class' => 'w-full block mb-4')); ?>
         <?php endif; ?>
