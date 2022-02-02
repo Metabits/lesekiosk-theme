@@ -5,7 +5,7 @@
 ?>
 <article class="kiosk-item padding-theme">
   <a href="<?php echo $link ?>">
-    <?php the_post_thumbnail('medium_crop', array('class' => 'w-full h-auto mb-3')); ?>
+    <?php the_post_thumbnail('medium_crop', array('class' => 'w-full h-auto mb-3 aspect-video')); ?>
   </a>
   <h3 class="px-1">
     <a href="<?php echo $link ?>" class="link-simple flex items-center">

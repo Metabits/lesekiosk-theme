@@ -2,7 +2,7 @@
   <div class="md:flex items-center">
     <?php if ( has_post_thumbnail()) : ?>
       <a href="<?php the_permalink(); ?>" class="md:w-1/4 block mb-2 md:mb-0 mr-4">
-        <?php the_post_thumbnail('medium_crop', array('class' => 'block w-full')); ?>
+        <?php the_post_thumbnail('medium_crop', array('class' => 'block w-full aspect-video')); ?>
       </a>
     <?php endif; ?>
     <div class="flex-1">
