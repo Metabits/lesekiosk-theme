@@ -3,20 +3,24 @@
   "version": "1.0.0",
   "description": "Tailwind Starter for Wordpress Based on html5blank for Wordpress",
   "scripts": {
-    "dev": "mix watch",
-    "build": "mix --production"
+    "dev": "TAILWIND_MODE=watch mix watch",
+    "build": "mix --production",
+    "zip": "zip -r ./dist.zip * -x  assets/\\* dist/\\* node_modules/\\*  *.DS_Store* dist.zip README.md package-lock.json package.json postcss.config.js tailwind.config.js webpack.mix.js mix-manifest.json",
+    "unzip": "rm -Rf dist && unzip -qq -o dist.zip -d dist",
+    "build::prod": "npm run build && npm run zip && npm run unzip"
   },
-  "author": "Ciaran",
+  "author": "Gerhard Sletten",
   "license": "ISC",
   "devDependencies": {
-    "browser-sync": "^2.27.5",
+    "autoprefixer": "^10.4.2",
+    "browser-sync": "^2.27.7",
     "browser-sync-webpack-plugin": "^2.3.0",
     "cross-env": "^7.0.3",
-    "laravel-mix": "^6.0.31"
+    "glob": "^7.2.0",
+    "laravel-mix": "^6.0.41",
+    "postcss": "^8.4.5"
   },
   "dependencies": {
-    "autoprefixer": "^10.3.6",
-    "postcss": "^8.3",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.16"
+    "tailwindcss": "^3.0.17"
   }
 }

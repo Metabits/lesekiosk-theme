@@ -1,7 +1,19 @@
 <?php
 
 if (WP_ENV !== 'development') {
-  // require_once 'acf.php';
+  require_once 'parts/acf.php';
+}
+
+$version_hash = '1.x';
+
+if (file_exists(get_template_directory() . '/version-hash.php' )) {
+  require_once 'version-hash.php';
+}
+
+global $bundle_hash;
+
+if ($bundle_hash) {
+  $version_hash = $bundle_hash;
 }
 
 function my_acf_init() {
@@ -127,9 +139,10 @@ function html5blank_nav()
 // Load HTML5 Blank scripts (header.php)
 function html5blank_header_scripts()
 {
+    global $version_hash;
     if ($GLOBALS['pagenow'] != 'wp-login.php' && !is_admin()) {
 
-        wp_register_script('html5blankscripts', get_template_directory_uri() . '/js/scripts.js', array('jquery'), '1.0.0'); // Custom scripts
+        wp_register_script('html5blankscripts', get_template_directory_uri() . '/js/scripts.js', array('jquery'), $version_hash); // Custom scripts
         wp_enqueue_script('html5blankscripts'); // Enqueue it!
     }
 }
@@ -137,8 +150,9 @@ function html5blank_header_scripts()
 // Load HTML5 Blank conditional scripts
 function html5blank_conditional_scripts()
 {
+    global $version_hash;
     if (is_page('pagenamehere')) {
-        wp_register_script('scriptname', get_template_directory_uri() . '/js/scriptname.js', array('jquery'), '1.0.0'); // Conditional script(s)
+        wp_register_script('scriptname', get_template_directory_uri() . '/js/scriptname.js', array('jquery'), $version_hash); // Conditional script(s)
         wp_enqueue_script('scriptname'); // Enqueue it!
     }
 }
@@ -146,7 +160,8 @@ function html5blank_conditional_scripts()
 // Load HTML5 Blank styles
 function html5blank_styles()
 {
-    wp_register_style('html5blank', get_template_directory_uri() . '/style.css', array(), '1.0', 'all');
+    global $version_hash;
+    wp_register_style('html5blank', get_template_directory_uri() . '/style.css', array(), $version_hash, 'all');
     wp_enqueue_style('html5blank'); // Enqueue it!
 }
 
@@ -286,8 +301,7 @@ function html5wp_excerpt($length_callback = '', $more_callback = '')
 // Custom View Article link to Post
 function html5_blank_view_article($more)
 {
-    global $post;
-    return '... <a class="view-article" href="' . get_permalink($post->ID) . '">' . __('View Article', 'html5blank') . '</a>';
+    return '...';
 }
 
 // Remove 'text/css' from our enqueued stylesheet
@@ -352,7 +366,7 @@ function html5blankcomments($comment, $args, $depth)
 \*------------------------------------*/
 
 // Add Actions
-add_action('init', 'html5blank_header_scripts'); // Add Custom Scripts to wp_head
+// add_action('init', 'html5blank_header_scripts'); // Add Custom Scripts to wp_head
 // add_action('wp_print_scripts', 'html5blank_conditional_scripts'); // Add Conditional Page Scripts
 add_action('get_header', 'enable_threaded_comments'); // Enable Threaded Comments
 add_action('wp_enqueue_scripts', 'html5blank_styles'); // Add Theme Stylesheet

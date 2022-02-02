@@ -1,5 +1,8 @@
-let mix = require('laravel-mix');
+const mix = require('laravel-mix');
+const fs = require('fs');
 
+mix.options({ processCssUrls: false });
+mix.setPublicPath('./')
 mix.js('assets/main.js', './js/scripts.js')
     .postCss('assets/style.css', './', [
     require('tailwindcss'),
@@ -12,3 +15,9 @@ mix.js('assets/main.js', './js/scripts.js')
 		  '**/*.php',
 	  ]
   })
+if (mix.inProduction()) {
+  mix.then((stats) => {
+    const content = `<?php $bundle_hash = '${stats.compilation.hash}';`
+    fs.writeFileSync('./version-hash.php', content);
+  });
+}

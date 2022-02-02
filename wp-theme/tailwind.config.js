@@ -1,9 +1,10 @@
+const glob = require('glob')
+
 module.exports = {
-  purge: [
-    './*.php',
-    './src/**/*.vue',
-    './src/**/*.jsx',
-  ],
+  mode: 'jit',
+  content: [
+    './assets/**/*.js',
+  ].concat(glob.sync("./**/*.php")),
   theme: {
     extend: {
       colors: {

@@ -49,29 +49,58 @@
               <?php the_post_thumbnail('small'); ?>
             </button>
             <?php foreach(get_field('gallery') as $img): ?>
-              <button class="border-2 border-white block mx-1 mb-1 image-viewer-item" data-alt="<?php echo $img['alt'] ?>" data-src="<?php echo wp_get_attachment_image_src($img['ID'], 'large')[0] ?>" data-srcset="<?php echo wp_get_attachment_image_srcset($img['ID'], 'large') ?>">
+              <button onclick="showImage()" class="border-2 border-white block mx-1 mb-1 image-viewer-item" data-alt="<?php echo $img['alt'] ?>" data-src="<?php echo wp_get_attachment_image_src($img['ID'], 'large')[0] ?>" data-srcset="<?php echo wp_get_attachment_image_srcset($img['ID'], 'large') ?>">
                 <?php echo wp_get_attachment_image($img['ID'], 'small'); ?>
               </button>
               <?php endforeach; ?>
           </nav>
+          <script>
+            function showImage() {
+              var target = document.querySelector('.image-viewer');
+              target.setAttribute('src', this.getAttribute('data-src'));
+              target.setAttribute('alt', this.getAttribute('data-alt'));
+              var btns = document.querySelectorAll('.image-viewer-item');
+              btns.forEach(function(el) {
+                el.classList.remove('border-primary');
+              });
+              this.classList.add('border-primary');
+            }
+          </script>
         <?php endif; ?>
       </div>
       <div class="border border-theme-no-padding border-b-0">
         <nav class="flex items-center justify-center md:text-lg">
-          <a class="js-tab-link block border-theme bg-primary text-white border-r border-l tab-link-selected" href="#info">
+          <button onclick="changeTab('#info')" class="js-tab-link block border-theme bg-primary text-white border-r border-l tab-link-selected">
             Lesekiosken
-          </a>
+          </button>
           <?php if (get_field('authorInfo')): ?>
-            <a class="js-tab-link block border-theme border-r hover:underline" href="#forfatter">
+            <button onclick="changeTab('#forfatter')" class="js-tab-link block border-theme border-r hover:underline">
               Forfatteren
-            </a>
+            </button>
           <?php endif; ?>
           <?php if (get_field('ownerInfo')): ?>
-            <a class="js-tab-link block border-theme border-r hover:underline" href="#faddere">
+            <button onclick="changeTab('#faddere')" class="js-tab-link block border-theme border-r hover:underline">
               Fadderne
-            </a>
+            </button>
           <?php endif; ?>
         </nav>
+        <script>
+          function changeTab(id) {
+            var tabContent = document.querySelectorAll('.tab-content');
+            var target = document.querySelector(id);
+            if (target) {
+              tabContent.forEach(function(el) {
+                el.classList.add('hidden');
+              })
+              target.classList.remove('hiddden');
+              var tabButtons = document.querySelectorAll('.js-tab-link');
+              tabButtons.forEach(function(el) {
+                el.classList.remove('bg-primary text-white');
+              })
+              this.classList.add('bg-primary text-white');
+            }
+          }
+        </script>
       </div>
       <div class="border border-theme border-b-0">
         <div class="max-w-prose mx-auto wp-content my-2">
