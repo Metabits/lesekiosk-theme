@@ -1,6 +1,6 @@
 <?php
 
-if (WP_ENV !== 'development') {
+if (!defined('WP_ENV')) {
   require_once 'parts/acf.php';
 }
 

@@ -38,17 +38,26 @@
           <?php endif; ?>
         </div>
       </div>
+      <?php $gallery = get_field('gallery'); ?>
       <div class="border border-b-0 border-theme">
         <div class="mx-auto mb-2 mt-2 image-viewer" style="max-width: 900px;">
-          <?php the_post_thumbnail('large'); ?>
+          <?php if ( has_post_thumbnail()) : ?>
+            <?php the_post_thumbnail('large'); ?>
+          <?php else: ?>
+            <?php if ($gallery): ?>
+              <?php echo wp_get_attachment_image($gallery[0]['ID'], 'large'); ?>
+            <?php endif; ?>
+          <?php endif; ?>
         </div>
-        <?php if (get_field('gallery')): ?>
+        <?php if ($gallery): ?>
           <nav class="flex flex-wrap items-center justify-center mb-2">
-            <?php $img_id = get_post_thumbnail_id() ?>
-            <button class="border-2 border-white border-primary block mx-1 mb-1 image-viewer-item" data-alt="<?php echo get_post_meta($img_id, '_wp_attachment_image_alt', TRUE) ?>" data-src="<?php echo wp_get_attachment_image_src($img_id, 'large')[0] ?>" data-srcset="<?php echo wp_get_attachment_image_srcset($img_id, 'large') ?>">
-              <?php the_post_thumbnail('small'); ?>
-            </button>
-            <?php foreach(get_field('gallery') as $img): ?>
+            <?php if ( has_post_thumbnail()) : ?>
+              <?php $img_id = get_post_thumbnail_id() ?>
+              <button class="border-2 border-white border-primary block mx-1 mb-1 image-viewer-item" data-alt="<?php echo get_post_meta($img_id, '_wp_attachment_image_alt', TRUE) ?>" data-src="<?php echo wp_get_attachment_image_src($img_id, 'large')[0] ?>" data-srcset="<?php echo wp_get_attachment_image_srcset($img_id, 'large') ?>">
+                <?php the_post_thumbnail('small'); ?>
+              </button>
+            <?php endif; ?>
+            <?php foreach($gallery as $img): ?>
               <button onclick="showImage(this)" class="border-2 border-white block mx-1 mb-1 image-viewer-item" data-alt="<?php echo $img['alt'] ?>" data-src="<?php echo wp_get_attachment_image_src($img['ID'], 'large')[0] ?>" data-srcset="<?php echo wp_get_attachment_image_srcset($img['ID'], 'large') ?>">
                 <?php echo wp_get_attachment_image($img['ID'], 'small'); ?>
               </button>
